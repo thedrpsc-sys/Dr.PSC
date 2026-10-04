@@ -1,0 +1,10 @@
+{
+  "name": "Dr. PSC",
+  "short_name": "Dr. PSC",
+  "description": "UPSC और State PCS की Simplified Preparation",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c62828",
+  "orientation": "portrait"
+}
