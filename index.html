@@ -470,10 +470,19 @@ function toggleRegister(){
  const reg=b.style.display==='none'; b.style.display=reg?'block':'none'; a.style.display=reg?'none':'block';
  document.getElementById('loginMsg').textContent='';
 }
-function registerUser(){
+async function registerUser(){
  const name=document.getElementById('name').value.trim(), email=document.getElementById('regEmail').value.trim(), pass=document.getElementById('regPassword').value;
  if(!name||!email||pass.length<4){document.getElementById('loginMsg').textContent='Name, email/mobile और कम-से-कम 4 character password भरें।';return}
- localStorage.setItem('drpsc_user',JSON.stringify({name,email,pass}));
+ try{
+  if(firebaseConfigured()){
+    await DrPSCCloud.register(name,email,pass);
+    document.getElementById('loginMsg').textContent='✅ Account created successfully. Please login.';
+    return;
+  }
+}catch(err){
+  document.getElementById('loginMsg').textContent='❌ '+(err.message||'Registration failed');
+  return;
+  }
  document.getElementById('loginMsg').textContent='Account बन गया। अब Login करें।';
  toggleRegister();
 }
