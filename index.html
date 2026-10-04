@@ -471,6 +471,7 @@ function toggleRegister(){
  document.getElementById('loginMsg').textContent='';
 }
 async function registerUser(){
+alert('Register function working');
  const name=document.getElementById('name').value.trim(), email=document.getElementById('regEmail').value.trim(), pass=document.getElementById('regPassword').value;
  if(!name||!email||pass.length<4){document.getElementById('loginMsg').textContent='Name, email/mobile और कम-से-कम 4 character password भरें।';return}
  try{
