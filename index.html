@@ -1082,7 +1082,7 @@ window.DrPSCInitFirebase();
 function firebaseConfigured(){
   return !!localStorage.getItem('drpsc_firebase_config') && window.DrPSCCloud && window.DrPSCCloud.ready;
 }
-async function demoRegister(){
+async function firebaseRegister(){
   const n=authName.value.trim(), e=authEmail.value.trim().toLowerCase(), p=authPassword.value;
   if(!n||!e||!p){authMsg.textContent='Please fill all fields.';return}
   try{
