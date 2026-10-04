@@ -470,34 +470,27 @@ function toggleRegister(){
  const reg=b.style.display==='none'; b.style.display=reg?'block':'none'; a.style.display=reg?'none':'block';
  document.getElementById('loginMsg').textContent='';
 }
-async function registerUser(){
+function registerUser(){
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('regEmail').value.trim();
   const pass = document.getElementById('regPassword').value;
 
-  if(!name  !email  pass.length < 6){
+  if(!name  !email  pass.length < 4){
     document.getElementById('loginMsg').textContent =
-      'Name, email और कम-से-कम 6 character password भरें।';
+      'Name, email/mobile और कम-से-कम 4 character password भरें।';
     return;
   }
 
-  try{
-    if(firebaseConfigured()){
-      await DrPSCCloud.register(name, email, pass);
+  localStorage.setItem('drpsc_user', JSON.stringify({
+    name: name,
+    email: email,
+    pass: pass
+  }));
 
-      document.getElementById('loginMsg').textContent =
-        '✅ Registered successfully. Kindly login.';
-      toggleRegister();
-      return;
-    }
+  document.getElementById('loginMsg').textContent =
+    'Account बन गया। अब Login करें।';
 
-    document.getElementById('loginMsg').textContent =
-      '❌ Firebase connected नहीं है।';
-
-  }catch(err){
-    document.getElementById('loginMsg').textContent =
-      '❌ ' + (err.message || 'Registration failed');
-  }
+  toggleRegister();
 }
 function loginUser(){
  const email=document.getElementById('email').value.trim(),pass=document.getElementById('password').value;
