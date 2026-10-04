@@ -466,9 +466,13 @@ function show(id,btn){
  if(btn){document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 }
 function toggleRegister(){
- const a=document.getElementById('loginForm'),b=document.getElementById('registerForm');
- const reg=b.style.display==='none'; b.style.display=reg?'block':'none'; a.style.display=reg?'none':'block';
- document.getElementById('loginMsg').textContent='';
+  const login = document.getElementById('loginForm');
+  const register = document.getElementById('registerForm');
+
+  login.style.display = 'none';
+  register.style.display = 'block';
+
+  document.getElementById('loginMsg').textContent = '';
 }
 async function registerUser(){
   const name = document.getElementById('name').value.trim();
